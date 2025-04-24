@@ -13,3 +13,4 @@ project ("mmrb")
 
 # Include sub-projects.
 add_subdirectory ("mmrb")
+add_subdirectory ("test")

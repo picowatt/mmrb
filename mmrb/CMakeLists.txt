@@ -6,8 +6,8 @@ find_package(Boost REQUIRED CONFIG COMPONENTS interprocess)
 
 # Add source to this project's executable.
 add_library (mmrb 
-"src/RingBuffer.cpp" 
 "include/mmrb/RingBuffer.h"
+"src/mmrb.cpp"
  )
  add_library(i::buffer ALIAS mmrb)
 

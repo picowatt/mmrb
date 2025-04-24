@@ -8,17 +8,52 @@ namespace mmrb {
 		size_t capacity;
 
 	public:
-		RingBuffer(size_t capacity);
+		RingBuffer(size_t capacity)
+			: capacity(capacity)
+		{
+		};
 
 		virtual ~RingBuffer() = default;
 
-		bool write(const T& item);
-		bool write(const void* data, size_t size);
-		bool read(T& item);
-		bool read(void* out, size_t size);
-		bool peek(T& item) const;
-		bool empty() const;
-		bool full() const;
-		bool clear();
+	protected:
+		bool write(const T& item)
+		{
+			return true;
+		}
+
+		bool write(const void* data, size_t size)
+		{
+			return true;
+		}
+
+		bool read(T& item)
+		{
+			return true;
+		}
+
+		bool read(void* out, size_t size)
+		{
+			return true;
+		}
+
+		bool peek(T& item) const
+		{
+			return true;
+		}
+
+		bool empty() const
+		{
+			return true;
+		}
+
+		bool full() const
+		{
+			return true;
+		}
+
+		bool clear()
+		{
+			return true;
+		}
 	};
 }

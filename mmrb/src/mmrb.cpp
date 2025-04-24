@@ -1,0 +1,3 @@
+namespace mmrb {
+	void touch() {}
+}

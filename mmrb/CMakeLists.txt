@@ -5,10 +5,12 @@
 find_package(Boost REQUIRED CONFIG COMPONENTS interprocess)
 
 # Add source to this project's executable.
-add_executable (mmrb 
-"src/mmrb.cpp" 
-"include/mmrb/mmrb.h"
-)
+add_library (mmrb 
+"src/RingBuffer.cpp" 
+"include/mmrb/RingBuffer.h"
+ )
+ add_library(i::buffer ALIAS mmrb)
+
 target_include_directories(mmrb
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

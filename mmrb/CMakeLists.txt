@@ -4,6 +4,9 @@
 
 find_package(Boost REQUIRED CONFIG COMPONENTS interprocess)
 
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 # Add source to this project's executable.
 add_library (mmrb 
 "include/mmrb/RingBuffer.h"
@@ -14,11 +17,8 @@ add_library (mmrb
 target_include_directories(mmrb
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        ${Boost_INCLUDE_DIRS}
 )
+
 target_link_libraries(mmrb PRIVATE Boost::interprocess)
 
-if (CMAKE_VERSION VERSION_GREATER 3.12)
-  set_property(TARGET mmrb PROPERTY CXX_STANDARD 20)
-endif()
-
-# TODO: Add tests and install targets if needed.

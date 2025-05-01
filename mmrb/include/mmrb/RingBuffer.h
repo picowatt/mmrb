@@ -1,59 +1,69 @@
 ﻿#pragma once
 
-namespace mmrb {
+#include <boost/interprocess/mapped_region.hpp>
+#include <boost/interprocess/file_mapping.hpp>
+#include <span>
+#include <cstddef>
+#include <utility>
+#include <cstring>
 
-	template <typename T>
-	class RingBuffer {
+namespace mmrb {
+	class MemoryMappedRingBuffer {
 	protected:
-		size_t capacity;
+		std::size_t capacity;
+		std::size_t head;
+		std::size_t tail;
 
 	public:
-		RingBuffer(size_t capacity)
+		MemoryMappedRingBuffer(size_t capacity)
 			: capacity(capacity)
+			, head(0)
+			, tail(0)
 		{
 		};
 
-		virtual ~RingBuffer() = default;
+		virtual ~MemoryMappedRingBuffer() = default;
 
 	protected:
-		bool write(const T& item)
+
+
+		size_t read(std::span<std::byte> dest)
 		{
-			return true;
+			return 0;
 		}
 
-		bool write(const void* data, size_t size)
+		size_t read(std::span<std::byte> dest, std::size_t count)
 		{
-			return true;
+			return 0;
 		}
 
-		bool read(T& item)
+		size_t read(std::span<std::byte> dest, std::size_t pos, std::size_t count)
 		{
-			return true;
+			return 0;
 		}
 
-		bool read(void* out, size_t size)
+		size_t write(std::span<const std::byte> src)
 		{
-			return true;
+			return 0;
 		}
 
-		bool peek(T& item) const
+		size_t write(std::span<const std::byte> src, std::size_t count)
 		{
-			return true;
+		}
+
+		std::pair<std::span<const std::byte>, std::span<const std::byte>> peek(size_t count) const
+		{
+			return {};
 		}
 
 		bool empty() const
 		{
-			return true;
+			return head == tail;
 		}
 
-		bool full() const
+		void clear()
 		{
-			return true;
-		}
-
-		bool clear()
-		{
-			return true;
+			tail = head;
 		}
 	};
 }
